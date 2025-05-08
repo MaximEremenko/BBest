@@ -249,9 +249,9 @@ set.lambda <- function(data, lambda=NA, lambda_1=NA, lambda_2=NA, lambda_0=NA, x
 ###
 set.SB <- function(data, SB=NA, n.atoms=NA, scatter.length=NA, ADP=NA, fit=FALSE, oneADP=TRUE, ADP.lim=c(0, 0.05)){
   if(is.na(SB[1])){
-    if(is.na(n.atoms) || is.na(scatter.length))
+    if (any(is.na(n.atoms)) || any(is.na(scatter.length)))
       stop("Please provide SB or parameters n.atoms and scatter.length\n")
-    if(is.na(ADP) && !fit)
+    if (!fit && any(is.na(ADP)))
       stop("Please provide ADP or set fit=TRUE\n")
     if(fit==TRUE){
       data$fitADP <- list(n.atoms=n.atoms, scatter.length=scatter.length, oneADP=oneADP, ADP.lim=ADP.lim)
